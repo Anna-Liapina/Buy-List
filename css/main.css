@@ -1,146 +1,155 @@
 body{
-  background-color: rgb(196, 178, 212);
-  }
-  .backgr {
-  background-color: rgb(255, 255, 255);
-  }
-  .add-remove {
-  width: 32px;
-  height: 32px;
-  padding: 3px 6px 3px 6px;
-  margin: 6px;
-  border-radius: 50%;
-  }
+background-color: rgb(196, 178, 212);
+}
+.backgr {
+background-color: rgb(255, 255, 255);
+}
+
+#container{
+  min-width: 510px !important;
+}
+.add-remove {
+width: 32px;
+height: 32px;
+padding: 3px 6px 3px 6px;
+margin: 6px;
+border-radius: 50%;
+}
+
+[data-tooltip]::after {
+content: attr(data-tooltip);
+position: absolute;
+visibility: hidden;
+line-height: 30px;
+padding-left: 5px;
+padding-right: 5px;
+margin-top: -30px;
+margin-left: -70px;
+box-sizing: border-box;
+width: attr(width);
+border-radius: 6%;
+z-index: 3;
+transition: 0.4s;
+opacity: 1;
+font-size: 17px;
+text-align: center;
+}
+
+[data-tooltip]:hover::after {
+opacity: 0.88;
+display: inline-block;
+background-color: #8e49a3;
+max-height: 50px;
+/* width: attr(width); */
+border-radius: 6%;
+z-index:	3;
+visibility:visible;
+font-size: 17px;
+transform: translateY(-10px);
+}
+
+.add {
+border-bottom: 2px solid #075826;
+}
+.remove {
+border-bottom: 2px solid #630c0c;
+}
+.item-counter {
+width: 32px;
+display: inline;
+}
+.item-name {
+display: inline-block;
+}
+.remaining button {
+margin-top: 4px;
+}
+.badge {
+border-radius: 50%;
+}
+.teni{
+border-bottom: 2px solid #272928;
+}
+.width{
+width: 126px;
+}
+.brdr{
+  border-color: rgb(196, 178, 212);
+}
+
+.myBadge{
+background: purple;
+width: 200px;
+height: 200px;
+border-radius: 8%;
+transition: all	1s	ease;
+position: fixed;
+top: 87%;
+}
+
+.text{
+font-size: 40px;
+display: flex;
+line-height: 100px; 
+justify-content: center;
+color: white;
+}
+
+.newText{
+font-size: 20px;
+display: flex;
+line-height: 10px; 
+justify-content: center;
+color: white;
+}
+
+.newText2{
+font-size: 20px;
+display: flex;
+line-height: 40px; 
+justify-content: center;
+color: white;
+}
+
+.myBadge:hover{
+background: darkblue;
+transform: translateY(-100px);
+}
+
+.myBadgePrint{ opacity:0;}
+
+
+@media print {
+  .colu1 {max-width: 20%;}
+  .colu2 {max-width: 30%;}
   
-  [data-tooltip]::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  visibility: hidden;
-  line-height: 30px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-top: -30px;
-  /* margin-left: -75px; */
-  border-radius: 6%;
-  z-index: 3;
-  border-radius: 15px;
-  transition: 0.4s;
-  opacity: 1;
-  font-size: 17px;
-  text-align: center;
-  }
-  
-  
-  [data-tooltip]:hover::after {
-  opacity: 0.88;
-  display: inline-block;
-  background-color: #8e49a3;
-  max-height: 50px;
-  border-radius: 6%;
-  z-index:	3;
-  visibility:visible;
-  font-size: 17px;
-  transform: translateY(-10px);
-  }
-  
-  .add {
-  border-bottom: 2px solid #075826;
-  }
-  .remove {
-  border-bottom: 2px solid #630c0c;
-  }
-  .item-counter {
-  width: 32px;
-  display: inline;
-  }
-  .item-name {
-  display: inline-block;
-  }
-  .remaining button {
-  margin-top: 4px;
-  }
-  .badge {
-  border-radius: 50%;
-  }
-  .teni{
-  border-bottom: 2px solid #272928;
-  }
-  .width{
-  width: 126px;
-  }
-  .brdr{
-    border-color: rgb(196, 178, 212);
-  }
-  .myBadge{
-  background: purple;
-  width: 200px;
-  height: 200px;
-  border-radius: 8%;
-  transition: all	1s	ease;
-  position: fixed;
-  top: 87%;
-  }
-  
-  .text{
-  font-size: 40px;
-  display: flex;
-  line-height: 100px; 
-  justify-content: center;
-  color: white;
-  }
-  
-  .newText{
-  font-size: 20px;
-  display: flex;
-  line-height: 10px; 
-  justify-content: center;
-  color: white;
-  }
-  
-  .newText2{
-  font-size: 20px;
-  display: flex;
-  line-height: 40px; 
-  justify-content: center;
-  color: white;
-  }
-  
-  .myBadge:hover{
-  background: darkblue;
-  transform: translateY(-100px);
-  }
-  
-  .myBadgePrint{ opacity:0;}
-  
-  @media print {
-  
-      .myBadge { opacity: 0; }
-  
-      .myBadgePrint{
-      opacity: 100;
-      width: 200px;
-      height: 200px;
-      border-radius: 10%;
-      position: fixed;
-      top: 87%;
-      border: solid 2px rgb(107, 26, 117);
-      }
-  
-      .newText{
-      opacity: 100;
-      font-size: 25px;
-      display: flex;
-      line-height: 45px; 
-      justify-content: center;
-      color: rgb(0, 0, 0);
-      }
-  
-      .newText2{
-      opacity: 100;
-      font-size: 25px;
-      display: flex;
-      line-height: 45px; 
-      justify-content: center;
-      color: rgb(0, 0, 0);
-      }
-  }
+    .myBadge { opacity: 0; }
+
+    .myBadgePrint{
+    opacity: 100;
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
+    position: fixed;
+    top: 87%;
+    border: solid 2px rgb(107, 26, 117);
+    }
+
+    .newText{
+    opacity: 100;
+    font-size: 25px;
+    display: flex;
+    line-height: 45px; 
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    }
+
+    .newText2{
+    opacity: 100;
+    font-size: 25px;
+    display: flex;
+    line-height: 45px; 
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    }
+}
