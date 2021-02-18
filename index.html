@@ -9,6 +9,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="main.js"></script>
 
 <link href="css/main.css" rel="stylesheet"><!-- Custom styles for this template -->
 
@@ -26,76 +27,10 @@
 
 
 <ul class="list-group">
-<li class="list-group-item" data-product-id="Помідори_2k21">
-<div class="row">
-<div class="col">
-	<span class="item-name m-1"> Помідори 🍅</span>
-</div>
-	
-<div class="col text-center"> 
-	<button class="btn btn-danger remove add-remove" type="button" data-tooltip=" Видалити товар " >-</button> <input class="form-control item-counter" disabled placeholder="1" type="text"> <button class="btn btn-success add add-remove" type="button"  data-tooltip=" Додати товар " >+</button>
-</div>
-
-
-<div class="col text-end">
-	<button class="btn btn-secondary teni" id = "button-bought-pom" type="button"  data-tooltip=" Оформити " >Куплено</button> <button class="btn remove btn-danger delete" type="button"  data-tooltip=" Видалити " >x</button>
-</div>
-</div>
-</li>
-<li class="list-group-item" data-product-id="Печиво_2k21">
-<div class="row">
-<div class="col">
-<span class="item-name m-1"> Печиво 🍪</span>
-</div>
-
-
-<div class="col text-center">
-<button class="btn btn-danger remove add-remove" type="button" data-tooltip=" Видалити товар " >-</button> <input class="form-control item-counter" disabled placeholder="1" type="text"> <button class="btn btn-success add add-remove" type="button" data-tooltip=" Додати товар " >+</button>
-</div>
-
-
-<div class="col text-end">
-<button class="btn btn-secondary teni" id = "button-bought-pech" type="button"  data-tooltip=" Оформити " >Куплено</button> <button class="btn remove btn-danger delete" type="button" data-tooltip=" Видалити" >x</button>
-</div>
-</div>
-</li>
-
-<li class="list-group-item" data-product-id="Огірки_2k21">
-<div class="row">
-<div class="col">
-	<span class="item-name m-1"> Огірки 🥒</span>
-</div>
-
-
-<div class="col text-center">
-	<button class="btn btn-danger remove add-remove" type="button"  data-tooltip="Видалити товар " >-</button> <input class="form-control item-counter" disabled placeholder="1" type="text"> <button class="btn btn-success add add-remove" type="button" data-tooltip=" Додати товар " >+</button>
-</div>
-
-
-<div class="col text-end">
-	<button class="btn btn-secondary teni" id = "button-bought-og" type="button"  data-tooltip=" Оформити "  >Куплено</button> <button class="btn remove btn-danger delete" type="button" data-tooltip=" Видалити " >x</button>
-</div>
-</div>
-</li>
-
-<li class="list-group-item" data-product-id="Сир_2k21">
-<div class="row">
-<div class="col">
-<span class="item-name m-1"> Сир 🧀</span>
-</div>
-
-
-<div class="col text-center">
-<button class="btn btn-danger remove add-remove" type="button" data-tooltip="Видалити товар" >-</button> <input class="form-control item-counter" disabled placeholder="1" type="text"> <button class="btn btn-success add add-remove" type="button" data-tooltip=" Додати товар " >+</button>
-</div>
-
-
-<div class="col text-end">
-<button class="btn btn-secondary teni" id = "button-bought-syr" type="button"  data-tooltip=" Оформити "  >Куплено</button> <button class="btn remove btn-danger delete" type="button" data-tooltip=" Видалити " >x</button>
-</div>
-</div>
-</li>
+<!-- PRODUCTS WILL INSERT HERE-->
 </ul>
+
+
 </div>
 </div>
 
@@ -106,7 +41,8 @@
 <hr>
 
 <div class="remaining">
-<button class="btn btn-secondary" type="button" data-product-id="Помідори_2k21"><span class="">Помідори 🍅</span> <span class="badge bg-warning">1</span></button> <button class="btn btn-secondary" type="button" data-product-id="Печиво_2k21"><span class="">Печиво 🍪</span> <span class="badge bg-warning">1</span></button> <button class="btn btn-secondary" type="button" data-product-id="Огірки_2k21"><span class="">Огірки 🥒</span> <span class="badge bg-warning">1</span></button> <button class="btn btn-secondary" type="button" data-product-id="Сир_2k21"><span class=""> Сир 🧀</span> <span class="badge bg-warning">1</span></button>
+<!-- CART PRODUCTS WILL INSERT HERE-->
+
 </div>
 <hr>
 
@@ -114,8 +50,8 @@
 <hr>
 
 <div class="buying">
-<!-- <br> -->
-<!-- <button class="btn btn-secondary" type="button" data-product-id="Помідори_2k21"><span class="">Помідори 🍅</span> <span class="badge bg-warning">1</span></button>  -->
+<!-- PURCHASED PRODUCTS WILL INSERT HERE-->
+
 </div>
 
 </div>
@@ -136,213 +72,10 @@
 </div>
 </div>
 
-<script>
-//BEGIN
-$( document ).ready(function() {
-
-/*function for adding new products to the list*/
-$("#button-add-item").click(function() {
-
-let new_product_name = $("#new-product-name").val();
-let new_product_id = new_product_name+'_'+getRandomString(5);
-
-$(".list-group").append('<li class="list-group-item" data-product-id="'+new_product_id+'">'+
-'	<div class="row">'+
-'		<div class="col">'+
-'			<span class="item-name m-1">  '+new_product_name+'  </span>'+
-'		</div>'	+
-'			<div class="col text-center"> '+
-'				<button class="btn btn-danger remove add-remove" type="button" data-tooltip=" Видалити товар " >-</button> <input class="form-control item-counter" disabled placeholder="1" type="text"> <button class="btn btn-success add add-remove" type="button"  data-tooltip=" Додати товар " >+</button>'+
-'			</div>'+
-'			<div class="col text-end">'+
-'				<button class="btn btn-secondary teni" type="button"  data-tooltip=" Оформити " >Куплено</button> <button class="btn remove btn-danger" type="button"  data-tooltip=" Видалити " >x</button>'+
-'			</div>'+
-'		</div>'+
-'</li>');
-
-$(".remaining").append('<button class="btn btn-secondary" type="button" data-product-id='+new_product_id+'><span class="">'+new_product_name+'</span> <span class="badge bg-warning">1</span></button> ')
-$("#new-product-name").val("");
-}
-);
+<!-- <script>
 
 
-/* function for responding on ENTER */
-$(".form-control").on('keypress',function(e) {
-if(e.which == 13) {
-let new_product_name = $("#new-product-name").val();
-let new_product_id = new_product_name+'_'+getRandomString(5);
-
-$(".list-group").append('<li class="list-group-item" data-product-id="'+new_product_id+'">'+
-'	<div class="row">'+
-'		<div class="col">'+
-'			<span class="item-name m-1">  '+new_product_name+'  </span>'+
-'		</div>'	+
-'			<div class="col text-center"> '+
-'				<button class="btn btn-danger remove add-remove" type="button" data-tooltip=" Видалити товар " >-</button> <input class="form-control item-counter" disabled placeholder="1" type="text"> <button class="btn btn-success add add-remove" type="button"  data-tooltip=" Додати товар " >+</button>'+
-'			</div>'+
-'			<div class="col text-end">'+
-'				<button class="btn btn-secondary teni" type="button"  data-tooltip=" Оформити " >Куплено</button> <button class="btn remove btn-danger" type="button"  data-tooltip=" Видалити " >x</button>'+
-'			</div>'+
-'		</div>'+
-'</li>');
-
-$(".remaining").append('<button class="btn btn-secondary" type="button" data-product-id='+new_product_id+'><span class="">'+new_product_name+'</span> <span class="badge bg-warning">1</span></button> ')
-$("#new-product-name").val("");
-}
-});
-
-
-/*function for deleting products from the list*/
-$(".list-group-item .delete").click(function() {
-
-data_product_id = $(this).parent().parent().parent().attr("data-product-id");
-alert("видалення продукта");
-$(".list-group-item[data-product-id="+data_product_id+"]").remove();
-$(".remaining .btn-secondary[data-product-id="+data_product_id+"]").remove();
-}
-);
-
-
-/*function for buying products*/
-$("#button-bought-pom").click(function() {
-alert("купівля продукта");	
-
-$(this).parent().parent().parent().replaceWith(
-'<li class="list-group-item" data-product-id="Помідори_2k21">'+
-'	<div class="row">'+
-'		<div class="col">'+
-'			<span class="item-name m-1">Помідори 🍅</span>'+
-'		</div>'	+
-'			<div class="col text-center"> '+
-'				<input class="form-control item-counter" disabled placeholder="1" type="text">'+
-'			</div>'+
-'			<div class="col text-end">'+
-'				<button class="btn btn-secondary teni" id = "notBought-pom" type="button"  data-tooltip=" Повернути " >Не куплено</button>'+
-'			</div>'+
-'		</div>'+
-'</li>');
-
-
-$(".remaining .btn-secondary[data-product-id=Помідори_2k21").remove();
-$(".buying").append(' <button class="btn btn-secondary" type="button" data-product-id="Помідори_2k21"><span class="">Помідори 🍅</span> <span class="badge bg-warning">1</span></button> ')
-});
-
-$("#button-bought-pech").click(function() {
-	alert("купівля продукта");
-
-$(this).parent().parent().parent().replaceWith(
-'<li class="list-group-item" data-product-id="Печиво_2k21">'+
-'	<div class="row">'+
-'		<div class="col">'+
-'			<span class="item-name m-1">Печиво 🍪</span>'+
-'		</div>'	+
-'			<div class="col text-center"> '+
-'				<input class="form-control item-counter" disabled placeholder="1" type="text">'+
-'			</div>'+
-'			<div class="col text-end">'+
-'				<button class="btn btn-secondary teni" id=notBought type="button"  data-tooltip=" Повернути " >Не куплено</button>'+
-'			</div>'+
-'		</div>'+
-'</li>');
-
-$(".remaining .btn-secondary[data-product-id=Печиво_2k21").remove();
-$(".buying").append(' <button class="btn btn-secondary" type="button" data-product-id="Печиво_2k21"><span class="">Печиво 🍪</span> <span class="badge bg-warning">1</span></button> ')
-});
-
-$("#button-bought-og").click(function() {
-	alert("купівля продукта");
-
-$(this).parent().parent().parent().replaceWith(
-'<li class="list-group-item" data-product-id="Огірки_2k21">'+
-'	<div class="row">'+
-'		<div class="col">'+
-'			<span class="item-name m-1">Огірки 🥒</span>'+
-'		</div>'	+
-'			<div class="col text-center"> '+
-'				<input class="form-control item-counter" disabled placeholder="1" type="text">'+
-'			</div>'+
-'			<div class="col text-end">'+
-'				<button class="btn btn-secondary teni" id=notBought type="button"  data-tooltip=" Повернути " >Не куплено</button>'+
-'			</div>'+
-'		</div>'+
-'</li>');
-
-$(".remaining .btn-secondary[data-product-id=Огірки_2k21").remove();
-$(".buying").append(' <button class="btn btn-secondary" type="button" data-product-id="Огірки_2k21"><span class="">Огірки 🥒</span> <span class="badge bg-warning">1</span></button> ')
-});
-
-$("#button-bought-syr").click(function() {
-	alert("купівля продукта");
-
-$(this).parent().parent().parent().replaceWith(
-'<li class="list-group-item" data-product-id="Сир_2k21">'+
-'	<div class="row">'+
-'		<div class="col">'+
-'			<span class="item-name m-1">Сир 🧀</span>'+
-'		</div>'	+
-'			<div class="col text-center"> '+
-'				<input class="form-control item-counter" disabled placeholder="1" type="text">'+
-'			</div>'+
-'			<div class="col text-end">'+
-'				<button class="btn btn-secondary teni" id=notBought type="button"  data-tooltip=" Повернути " >Не куплено</button>'+
-'			</div>'+
-'		</div>'+
-'</li>');
-
-$(".remaining .btn-secondary[data-product-id=Сир_2k21").remove();
-$(".buying").append(' <button class="btn btn-secondary" type="button" data-product-id="Сир_2k21"><span class="">Сир 🧀</span> <span class="badge bg-warning">1</span></button> ')
-});
-
-
-
-
-
-/*function for removind from bought-list*/
-// $("#notBought-pom").click(function() {
-// 	alert("повернення продукта до списку");
-// $(this).parent().parent().parent().replaceWith(
-// '<li class="list-group-item" data-product-id="Помідори_2021">'+
-// '	<div class="row">'+
-// '		<div class="col">'+
-// '			<span class="item-name m-1">Помідори 🍅</span>'+
-// '		</div>'	+
-// '			<div class="col text-center"> '+
-// '				<button class="btn btn-danger remove add-remove" type="button" data-tooltip=" Видалити товар " >-</button> <input class="form-control item-counter" disabled placeholder="1" type="text"> <button class="btn btn-success add add-remove" type="button"  data-tooltip=" Додати товар " >+</button>'+
-// '			</div>'+
-// '			<div class="col text-end">'+
-// '				<button class="btn btn-secondary teni" id = "button-bought-pom" type="button"  data-tooltip=" Оформити " >Куплено</button> <button class="btn remove btn-danger" type="button"  data-tooltip=" Видалити " >x</button>'+
-// '			</div>'+
-// '		</div>'+
-// '</li>');
-
-// $(".remaining").append('<button class="btn btn-secondary" type="button" data-product-id=Помідори_2021><span class="">Помідори 🍅</span> <span class="badge bg-warning">1</span></button> ')
-// }
-// );
-
-
-
-
-
-/*function for for smooth page loading*/
-setTimeout(function(){
-$('body').addClass('body_visible');
-}, 200);
-
-
-/*function for random id*/	
-function getRandomString(length) {
-var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-var result = '';
-for ( var i = 0; i < length; i++ ) {
-result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
-}
-return result;
-}
-
-//END
-});
-
-</script>
+</script> -->
 
 </body>
 </html>
