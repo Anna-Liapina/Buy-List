@@ -61,11 +61,11 @@ $(function() {
 
 	});
 
-	/*for additing name of products*/
+	/*for editing name of products*/
 	// $(document).on("click", ".list-group-item span.item-name", function() {
 
 	// 	let product_id = $(this).parent().parent().parent().attr("data-product-id");
-	//     additingNameOfProducts(product_id);
+	//     editingNameOfProducts(product_id);
 		
 	// });
 
@@ -233,7 +233,7 @@ function deleteProductFromList(product_id) {
 }
 
 
-// function additingNameOfProducts(product_id) {
+// function editingNameOfProducts(product_id) {
 
 // 	alert ("hsvdvsndlkv");
 // 	$(".list-group-item[data-product-id=" + product_id + "] span.item-name").display = "none";
