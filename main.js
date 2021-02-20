@@ -107,6 +107,7 @@ $(document).on("click", ".notBought", function() {
  */
 function addNewProduct(new_product_name, product_quantity) {
 	let new_product_id = getRandomString(8);
+	let remainingList = $(".remaining");
 
 	$(".list-group").append('<li class="list-group-item" data-product-id="' + new_product_id + '">' +
 		'	<div class="row">' +
@@ -128,8 +129,8 @@ function addNewProduct(new_product_name, product_quantity) {
 		'		</div>' +
 		'</li>');
 
-	$(".remaining").append('<button class="btn btn-secondary" type="button" data-product-id=' + new_product_id + '><span class="">' + new_product_name + '</span> <span class="badge bg-warning">' + product_quantity + '</span></button> ')
-	$("#new-product-name").val("");
+		remainingList.append('<button class="btn btn-secondary pomogite" type="button" data-product-id=' + new_product_id + '><span class="">' + new_product_name + '</span> <span class="badge bg-warning">' + product_quantity + '</span></button> ');
+		$("#new-product-name").val("");
 }
 
 
@@ -245,30 +246,37 @@ function deleteProductFromList(product_id) {
 function increaseQuantity(product_id) {
 
 	let product_quantity = getProductQuantityFromId(product_id);
-	
+	let remainingList = $(".remaining");
+
 	product_quantity = parseInt(product_quantity) + 1;
-	if(product_quantity>1){
+	
 	let product = getProductFromId(product_id);
 
 	product.find('#item-counter').attr("placeholder", product_quantity).val(product_quantity);
-	//remaining.find('$(".remaining .btn-secondary[data-product-id="' + product_id + '"]")').attr("bg-warning", product_quantity).val(product_quantity);
+	let rl = remainingList.find(".pomogite[data-product-id='" + product_id + "']");
+	rl.find(".badge").text(product_quantity);
 	//$(".buying .btn-secondary[data-product-id='" + product_id + "']").remove();
 
 	console.log(product_quantity);
+	if(product_quantity>1){
 	product.find(".remove").removeAttr('disabled');
 	}
 }
 
 
+
 function decreaseQuantity(product_id) {
 
 	let product_quantity = getProductQuantityFromId(product_id);
+	let remainingList = $(".remaining");
 
 	product_quantity = parseInt(product_quantity) - 1;
 	
 	let product = getProductFromId(product_id);
 	if(product_quantity == 1) product.find(".remove").attr('disabled', 'disabled');
 	product.find('#item-counter').attr("placeholder", product_quantity).val(product_quantity);
+	let rl = remainingList.find(".pomogite[data-product-id='" + product_id + "']");
+	rl.find(".badge").text(product_quantity);
 	console.log(product_quantity);
 }
 
@@ -295,6 +303,10 @@ function getProductFromId(product_id) {
 	return node
 }
 
+function getRemainingSecondaryBottonFromId(product_id) {
+	let node = remainingList.find(".pomogite[data-product-id='" + product_id + "']");
+	return node
+}
 
 /*function for random id*/
 function getRandomString(length) {
