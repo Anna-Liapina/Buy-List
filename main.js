@@ -11,8 +11,8 @@ setTimeout(function() {
 $(function() {
 
 	addNewProduct("Помідори 🍅", 1);
-	addNewProduct("Печиво 🍪", 3);
-	addNewProduct("Огірки 🥒", 5);
+	addNewProduct("Печиво 🍪", 1);
+	addNewProduct("Огірки 🥒", 1);
 	addNewProduct("Сир 🧀", 1);
 
 	//$(document).on('keyup', 'span.item-name', function(){})
@@ -71,19 +71,21 @@ $(function() {
 
 	/*for adding quantity of products*/
 	$(document).on("click", ".add", function() {
-
-		alert("dodavannyua");
+		// alert("dodavannyua");
 
 		let product_id = $(this).parent().parent().parent().attr("data-product-id");
+
 		increaseQuantity(product_id);
 	});
 
+
 	/*for deleting quantity of products*/
-	// $(document).on("click", ".remove", function() {
-	// 	alert("vidnimannyua");
-	// 	let product_id = $(this).parent().attr("data-product-id");
-	// 	decreaseQuantity(product_id);
-	// });
+	$(document).on("click", ".remove", function() {
+		// alert("vidnimannyua");
+
+		let product_id = $(this).parent().parent().parent().attr("data-product-id");
+		decreaseQuantity(product_id);
+	});
 
 	//END
 });
@@ -118,7 +120,7 @@ function addNewProduct(new_product_name, product_quantity) {
 		'		</div>' +
 
 		'			<div class="col text-center"> ' +
-		'				<button class="btn btn-danger remove add-remove" type="button" data-tooltip=" Видалити товар " >-</button> <input class="form-control item-counter" id=item-counter disabled placeholder="' + product_quantity + '" type="text" value="' + product_quantity + '"> <button class="btn btn-success add add-remove" type="button"  data-tooltip=" Додати товар " >+</button>' +
+		'				<button class="btn btn-danger remove add-remove" type="button" disabled data-tooltip=" Видалити товар " >-</button> <input class="form-control item-counter" id="item-counter" disabled placeholder="' + product_quantity + '" type="text" value="' + product_quantity + '"> <button class="btn btn-success add add-remove" type="button"  data-tooltip=" Додати товар " >+</button>' +
 		'			</div>' +
 		'			<div class="col text-end">' +
 		'				<button class="btn btn-secondary teni" type="button"  data-tooltip=" Оформити " >Куплено</button> <button class="btn delete btn-danger" type="button"  data-tooltip=" Видалити " >x</button>' +
@@ -243,25 +245,32 @@ function deleteProductFromList(product_id) {
 function increaseQuantity(product_id) {
 
 	let product_quantity = getProductQuantityFromId(product_id);
-	product_quantity = parseInt(product_quantity) + 1;
 	
-	//$('#item-counter').attr('placeholder', product_quantity);
-	//$("#item-counter").attr("placeholder", product_quantity).val(product_quantity);
+	product_quantity = parseInt(product_quantity) + 1;
+	if(product_quantity>1){
+	let product = getProductFromId(product_id);
+
+	product.find('#item-counter').attr("placeholder", product_quantity).val(product_quantity);
+	//remaining.find('$(".remaining .btn-secondary[data-product-id="' + product_id + '"]")').attr("bg-warning", product_quantity).val(product_quantity);
+	//$(".buying .btn-secondary[data-product-id='" + product_id + "']").remove();
+
 	console.log(product_quantity);
-
-	$('input:text').attr('placeholder',product_quantity);
-	// <input class="form-control item-counter" disabled placeholder="' +
-	//  product_quantity + '" type="text" value="' + product_quantity + '"></input>
-
+	product.find(".remove").removeAttr('disabled');
+	}
 }
 
 
-// function decreaseQuantity(product_id) {
-// 	getProductQuantityFromId(product_id);
-// 	// console.log(product_quantity);
-// 	product_quantity -= 1;
-// 	val() -= 1;
-// }
+function decreaseQuantity(product_id) {
+
+	let product_quantity = getProductQuantityFromId(product_id);
+
+	product_quantity = parseInt(product_quantity) - 1;
+	
+	let product = getProductFromId(product_id);
+	if(product_quantity == 1) product.find(".remove").attr('disabled', 'disabled');
+	product.find('#item-counter').attr("placeholder", product_quantity).val(product_quantity);
+	console.log(product_quantity);
+}
 
 
 
@@ -281,7 +290,10 @@ function getProductQuantityFromId(product_id) {
 	return product_quantity
 }
 
-
+function getProductFromId(product_id) {
+	let node = $(".list-group-item[data-product-id=" + product_id + "]");
+	return node
+}
 
 
 /*function for random id*/
