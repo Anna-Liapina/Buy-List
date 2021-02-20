@@ -11,8 +11,7 @@
 - [x] mediaquery using bootstrap breakpoints as defined [here](https://getbootstrap.com/docs/5.0/layout/breakpoints/).
 
 ## Home Work 3
-- [x] added js and jquery :
-
+- [x] added js and jquery
 - [x] making all functions dependent only on product_id
 - [x] able to add new product with button "Додати" and with Enter (cannot add an empty name)
 - [x] able to delete product from the list
